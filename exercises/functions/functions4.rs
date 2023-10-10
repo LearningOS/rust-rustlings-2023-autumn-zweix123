@@ -8,14 +8,17 @@
 // Execute `rustlings hint functions4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn main() {
     let original_price = 51;
     println!("Your sale price is {}", sale_price(original_price));
 }
 
-fn sale_price(price: i32) -> {
+// 这里有两个
+// 一个是函数的返回值的形式, 相当于C++的尾后类型
+// 另一个就是函数反掌的形式, 可以使用代码块末尾的expression表示
+// 聊到这里需要区分statement and expression, 我目前的理解就是有无分号
+
+fn sale_price(price: i32) -> i32 {
     if is_even(price) {
         price - 10
     } else {
