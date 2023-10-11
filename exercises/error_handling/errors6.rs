@@ -9,8 +9,6 @@
 // Execute `rustlings hint errors6` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 use std::num::ParseIntError;
 
 // This is a custom error type that we will be using in `parse_pos_nonzero()`.
@@ -20,19 +18,38 @@ enum ParsePosNonzeroError {
     ParseInt(ParseIntError),
 }
 
-impl ParsePosNonzeroError {
-    fn from_creation(err: CreationError) -> ParsePosNonzeroError {
+// 这个应该并不是题目要求的用法
+// 但是这里的From Trait确实好用
+// 针对每个类型分别实现对应的from
+// 这样在Caller层面接口就一样的
+// 皆可以正确返回多个东西了
+// 应该这样也会让ParsePosNonzeroError实现某个error::Error，不然parse的异常也能同样的处理
+
+// impl ParsePosNonzeroError {
+//     fn from_creation(err: CreationError) -> ParsePosNonzeroError {
+//         ParsePosNonzeroError::Creation(err)
+//     }
+//     // TODO: add another error conversion function here.
+//     // fn from_parseint...
+// }
+
+impl From<CreationError> for ParsePosNonzeroError {
+    fn from(err: CreationError) -> Self {
         ParsePosNonzeroError::Creation(err)
     }
-    // TODO: add another error conversion function here.
-    // fn from_parseint...
+}
+
+impl From<ParseIntError> for ParsePosNonzeroError {
+    fn from(err: ParseIntError) -> Self {
+        ParsePosNonzeroError::ParseInt(err)
+    }
 }
 
 fn parse_pos_nonzero(s: &str) -> Result<PositiveNonzeroInteger, ParsePosNonzeroError> {
     // TODO: change this to return an appropriate error instead of panicking
     // when `parse()` returns an error.
-    let x: i64 = s.parse().unwrap();
-    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
+    let x: i64 = s.parse()?;
+    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from)
 }
 
 // Don't change anything below this line.

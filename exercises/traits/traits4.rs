@@ -7,7 +7,7 @@
 // Execute `rustlings hint traits4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 这些trait真接口了
 
 pub trait Licensed {
     fn licensing_info(&self) -> String {
@@ -23,7 +23,11 @@ impl Licensed for SomeSoftware {}
 impl Licensed for OtherSoftware {}
 
 // YOU MAY ONLY CHANGE THE NEXT LINE
-fn compare_license_types(software: ??, software_two: ??) -> bool {
+
+// GPT说dyn 通常用于 trait 对象，而 impl 通常用于泛型函数和类型实现中的类型标注
+// 所以这里表示具体的实现, maybe
+
+fn compare_license_types(software: impl Licensed, software_two: impl Licensed) -> bool {
     software.licensing_info() == software_two.licensing_info()
 }
 

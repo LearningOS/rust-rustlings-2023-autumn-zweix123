@@ -22,17 +22,20 @@
 // Execute `rustlings hint errors5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// Rust中的Trait的概念类似Java中的接口
+// 但是它完全是非侵入式的
+// 对于一个结构体, 想使用什么trait就为其实现
+// 而且其有默认实现
 
 use std::error;
 use std::fmt;
 use std::num::ParseIntError;
 
 // TODO: update the return type of `main()` to make this compile.
-fn main() -> Result<(), Box<dyn ???>> {
+fn main() -> Result<(), Box<dyn error::Error>> {
     let pretend_user_input = "42";
-    let x: i64 = pretend_user_input.parse()?;
-    println!("output={:?}", PositiveNonzeroInteger::new(x)?);
+    let x: i64 = pretend_user_input.parse()?; // 异常F::Err
+    println!("output={:?}", PositiveNonzeroInteger::new(x)?); // 异常CraterError
     Ok(())
 }
 
