@@ -1,8 +1,8 @@
 // using_as.rs
 //
-// Type casting in Rust is done via the usage of the `as` operator. Please note
-// that the `as` operator is not only used when type casting. It also helps with
-// renaming imports.
+// Type casting in Rust is done via the usage of the `as` operator.
+// Please note that the `as` operator is not only used when type casting.
+// It also helps with renaming imports.
 //
 // The goal is to make sure that the division does not fail to compile and
 // returns the proper type.
@@ -10,11 +10,12 @@
 // Execute `rustlings hint using_as` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 强转, 我猜是安全的, 语义不变的
 
 fn average(values: &[f64]) -> f64 {
     let total = values.iter().sum::<f64>();
-    total / values.len()
+    total / (values.len() as f64)
+    // Rust的强制类型转换
 }
 
 fn main() {

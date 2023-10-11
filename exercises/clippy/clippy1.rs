@@ -9,12 +9,12 @@
 // Execute `rustlings hint clippy1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 use std::f32;
 
 fn main() {
-    let pi = 3.14f32;
+    let pi = f32::consts::PI;
+    // 就改成这个就好了?
+    // Rust编译器还会提示最佳实践?
     let radius = 5.00f32;
 
     let area = pi * f32::powi(radius, 2);
