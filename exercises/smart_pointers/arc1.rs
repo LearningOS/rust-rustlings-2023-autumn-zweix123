@@ -21,7 +21,14 @@
 //
 // Execute `rustlings hint arc1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 这里我们学到了原子变量
+// 因为我们发现每个线程实际上是没有竟态的, 所以没有使用锁
+// 是嘛?那为什么使用原子变量?
+// whatever
+// 两个接口
+// Arc::new(变量)  创建原子变量
+// Arc::clone(&原子变量)  拷贝原子变量, 之后可以正常访问
+// maybe内部可以保证不竞争
 
 #![forbid(unused_imports)] // Do not change this, (or the next) line.
 use std::sync::Arc;
@@ -29,11 +36,11 @@ use std::thread;
 
 fn main() {
     let numbers: Vec<_> = (0..100u32).collect();
-    let shared_numbers = // TODO
+    let shared_numbers = Arc::new(numbers);
     let mut joinhandles = Vec::new();
 
     for offset in 0..8 {
-        let child_numbers = // TODO
+        let child_numbers = Arc::clone(&shared_numbers);
         joinhandles.push(thread::spawn(move || {
             let sum: u32 = child_numbers.iter().filter(|&&n| n % 8 == offset).sum();
             println!("Sum of offset {} is {}", offset, sum);

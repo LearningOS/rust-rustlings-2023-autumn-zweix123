@@ -3,8 +3,6 @@
 // Execute `rustlings hint iterators4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 pub fn factorial(num: u64) -> u64 {
     // Complete this function to return the factorial of num
     // Do not use:
@@ -15,6 +13,11 @@ pub fn factorial(num: u64) -> u64 {
     // For an extra challenge, don't use:
     // - recursion
     // Execute `rustlings hint iterators4` for hints.
+    // (1..(num + 1)).product()
+    // (1..=num).product()  // 这样形式能使用闭区间
+    (1..=num).fold(1, |acc, x| acc * x)
+    // 这样累加器也行
+    // fold参数的第一个是累加器的初始值， 后面的| 里面第一个是累加器, 后面的迭代的值|
 }
 
 #[cfg(test)]

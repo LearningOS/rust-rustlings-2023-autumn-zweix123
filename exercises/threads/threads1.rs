@@ -8,7 +8,9 @@
 // Execute `rustlings hint threads1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 这个题目给了计算线程时间的例子
+// 我还发现标准库中对append和push的语义做了明显区分
+// append(other)和push(value)
 
 use std::thread;
 use std::time::{Duration, Instant};
@@ -27,6 +29,7 @@ fn main() {
     let mut results: Vec<u128> = vec![];
     for handle in handles {
         // TODO: a struct is returned from thread::spawn, can you use it?
+        results.push(handle.join().unwrap());
     }
 
     if results.len() != 10 {

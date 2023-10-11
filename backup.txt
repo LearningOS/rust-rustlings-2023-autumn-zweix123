@@ -1,0 +1,2 @@
+ exercises/iterators/iterators5.rs
+ exercises/threads/threads1.rs

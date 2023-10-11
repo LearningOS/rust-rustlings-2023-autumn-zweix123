@@ -8,14 +8,18 @@
 //
 // This exercise is meant to show you what to expect when passing data to Cow.
 // Fix the unit tests by checking for Cow::Owned(_) and Cow::Borrowed(_) at the
-// TODO markers.
+// TODO
+// markers.
 //
 // Execute `rustlings hint cow1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// std::borrow::Cow, 本质也是真的引用的优化
 
 use std::borrow::Cow;
 
+// Cow<>的两个参数分别表示生命周期和类型
+// 声明周期: 'a和'b, 对应的名字没关系, 可以是任何标识符
+// 类型: [i32]表示类型的切片
 fn abs_all<'a, 'b>(input: &'a mut Cow<'b, [i32]>) -> &'a mut Cow<'b, [i32]> {
     for i in 0..input.len() {
         let v = input[i];
@@ -48,7 +52,9 @@ mod tests {
         let slice = [0, 1, 2];
         let mut input = Cow::from(&slice[..]);
         match abs_all(&mut input) {
-            // TODO
+            Cow::Borrowed(_) => Ok(()),
+            // Cow::Owned(_) => todo!(),
+            _ => Err("Expected borrowd value"),
         }
     }
 
@@ -58,9 +64,12 @@ mod tests {
         // case no mutation occurs and thus also no clone, but the result is
         // still owned because it was never borrowed or mutated.
         let slice = vec![0, 1, 2];
+        // 我们看这里和上面的区别, 就是这里直接移动了(而不是引用), 所以拥有own
         let mut input = Cow::from(slice);
+
         match abs_all(&mut input) {
-            // TODO
+            Cow::Owned(_) => Ok(()),
+            _ => Err("Expected borrowd value"),
         }
     }
 
@@ -72,7 +81,8 @@ mod tests {
         let slice = vec![-1, 0, 1];
         let mut input = Cow::from(slice);
         match abs_all(&mut input) {
-            // TODO
+            Cow::Owned(_) => Ok(()),
+            _ => Err("Expected owned value"),
         }
     }
 }
