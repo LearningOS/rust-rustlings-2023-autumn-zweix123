@@ -2,17 +2,17 @@
 //
 // Execute `rustlings hint if3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 pub fn animal_habitat(animal: &str) -> &'static str {
     let identifier = if animal == "crab" {
         1
     } else if animal == "gopher" {
-        2.0
+        2
     } else if animal == "snake" {
         3
+    } else if animal == "dinosaur" {
+        4
     } else {
-        "Unknown"
+        unreachable!()
     };
 
     // DO NOT CHANGE THIS STATEMENT BELOW
@@ -32,6 +32,7 @@ pub fn animal_habitat(animal: &str) -> &'static str {
 #[cfg(test)]
 mod tests {
     use super::*;
+    // 导入上层scope所有内容?, 我觉得肯定是的
 
     #[test]
     fn gopher_lives_in_burrow() {

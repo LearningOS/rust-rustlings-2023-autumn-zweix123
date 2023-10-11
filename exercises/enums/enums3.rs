@@ -5,10 +5,15 @@
 // Execute `rustlings hint enums3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 来看看这个用法, 确实好优雅, 但是match的每个字段为啥要用，结尾(), 索性有formatter
+// 还有就是unureachable
 
 enum Message {
     // TODO: implement the message variant types based on their usage below
+    ChangeColor(u8, u8, u8),
+    Echo(String),
+    Move(Point),
+    Quit,
 }
 
 struct Point {
@@ -20,7 +25,7 @@ struct State {
     color: (u8, u8, u8),
     position: Point,
     quit: bool,
-    message: String
+    message: String,
 }
 
 impl State {
@@ -32,17 +37,28 @@ impl State {
         self.quit = true;
     }
 
-    fn echo(&mut self, s: String) { self.message = s }
+    fn echo(&mut self, s: String) {
+        self.message = s
+    }
 
     fn move_position(&mut self, p: Point) {
         self.position = p;
     }
 
     fn process(&mut self, message: Message) {
-        // TODO: create a match expression to process the different message
-        // variants
-        // Remember: When passing a tuple as a function argument, you'll need
-        // extra parentheses: fn function((t, u, p, l, e))
+        // TODO:
+        // create a match expression to process the different message variants
+        // Remember:
+        // When passing a tuple as a function argument,
+        // you'll need extra parentheses:
+        // fn function((t, u, p, l, e))
+        match message {
+            Message::ChangeColor(a, b, c) => self.change_color((a, b, c)),
+            Message::Move(p) => self.move_position(p),
+            Message::Quit => self.quit(),
+            Message::Echo(s) => self.echo(s),
+            _ => unreachable!(),
+        }
     }
 }
 

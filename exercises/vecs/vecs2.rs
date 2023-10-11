@@ -7,13 +7,15 @@
 //
 // Execute `rustlings hint vecs2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// Rust的指针和引用部分怎么说, 不理解
 
 fn vec_loop(mut v: Vec<i32>) -> Vec<i32> {
     for element in v.iter_mut() {
         // TODO: Fill this up so that each element in the Vec `v` is
         // multiplied by 2.
-        ???
+        // ???
+        // iter_mut返回的是一个可修改的迭代器(一种指针, maybe)
+        *element *= 2
     }
 
     // At this point, `v` should be equal to [4, 8, 12, 16, 20].
@@ -21,11 +23,17 @@ fn vec_loop(mut v: Vec<i32>) -> Vec<i32> {
 }
 
 fn vec_map(v: &Vec<i32>) -> Vec<i32> {
-    v.iter().map(|element| {
-        // TODO: Do the same thing as above - but instead of mutating the
-        // Vec, you can just return the new number!
-        ???
-    }).collect()
+    v.iter()
+        .map(|element| {
+            // TODO: Do the same thing as above - but instead of mutating the
+            // Vec, you can just return the new number!
+            // ???
+            // 这种函数式编程的方式则是返回一个具体的值
+            //从lsp里月可能看到是引用
+            //
+            element * 2
+        })
+        .collect()
 }
 
 #[cfg(test)]

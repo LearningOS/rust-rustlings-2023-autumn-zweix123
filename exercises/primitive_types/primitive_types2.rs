@@ -6,8 +6,6 @@
 // Execute `rustlings hint primitive_types2` or use the `hint` watch subcommand
 // for a hint.
 
-// I AM NOT DONE
-
 fn main() {
     // Characters (`char`)
 
@@ -22,9 +20,13 @@ fn main() {
         println!("Neither alphabetic nor numeric!");
     }
 
-    let // Finish this line like the example! What's your favorite character?
-    // Try a letter, try a number, try a special character, try a character
-    // from a different language than your own, try an emoji!
+    let your_character = ' '; // Finish this line like the example! What's your favorite character?
+                              // Try a letter, try a number, try a special character, try a character
+                              // from a different language than your own, try an emoji!
+
+    // 可能Rust对很常用的基本类型也有封装，是指具有方法，可用性上来了
+    // 应该性能没问题吧
+    // 可执行文件稍微有点点大?
     if your_character.is_alphabetic() {
         println!("Alphabetical!");
     } else if your_character.is_numeric() {

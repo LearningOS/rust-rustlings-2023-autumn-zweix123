@@ -5,17 +5,23 @@
 //
 // Execute `rustlings hint if2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
+// 这里的str是字符串切片，指向堆，不可改
 pub fn foo_if_fizz(fizzish: &str) -> &str {
     if fizzish == "fizz" {
         "foo"
+    } else if fizzish == "fuzz" {
+        "bar"
+    } else if fizzish == "literally anything" {
+        "baz"
     } else {
-        1
+        unreachable!()
+        // panic!("unreachable")
+        // 两种方式表示分支不可达
     }
 }
 
 // No test changes needed!
+// 属性部分没有多什么
 #[cfg(test)]
 mod tests {
     use super::*;
