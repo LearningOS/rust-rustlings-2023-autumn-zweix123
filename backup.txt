@@ -1,1 +1,0 @@
-exercises/strings/strings3.rs!

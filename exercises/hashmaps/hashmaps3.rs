@@ -14,7 +14,8 @@
 // Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// hash table find
+// Rust的链式调阅使对于空值的查找很优雅
 
 use std::collections::HashMap;
 
@@ -39,6 +40,23 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // will be the number of goals conceded from team_2, and similarly
         // goals scored by team_2 will be the number of goals conceded by
         // team_1.
+
+        let team_1_entry = scores.entry(team_1_name).or_insert(Team {
+            goals_scored: 0,
+            goals_conceded: 0,
+        });
+        // entry应该返回的真是entry, 但是后面链式调用了or_insert, 所以最后是value
+
+        team_1_entry.goals_scored += team_1_score;
+        team_1_entry.goals_conceded += team_2_score;
+
+        let team_2_entry = scores.entry(team_2_name).or_insert(Team {
+            goals_scored: 0,
+            goals_conceded: 0,
+        });
+
+        team_2_entry.goals_scored += team_2_score;
+        team_2_entry.goals_conceded += team_1_score;
     }
     scores
 }

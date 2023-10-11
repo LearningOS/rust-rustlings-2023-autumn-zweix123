@@ -7,24 +7,34 @@
 //
 // No hints this time!
 
-// I AM NOT DONE
-
 fn string_slice(arg: &str) {
     println!("{}", arg);
 }
+
 fn string(arg: String) {
     println!("{}", arg);
 }
 
 fn main() {
-    ???("blue");
-    ???("red".to_string());
-    ???(String::from("hi"));
-    ???("rust is fun!".to_owned());
-    ???("nice weather".into());
-    ???(format!("Interpolation {}", "Station"));
-    ???(&String::from("abc")[0..1]);
-    ???("  hello there ".trim());
-    ???("Happy Monday!".to_string().replace("Mon", "Tues"));
-    ???("mY sHiFt KeY iS sTiCkY".to_lowercase());
+    let s = string_slice;
+    let S = string;
+
+    s("blue");
+    S("red".to_string());
+    S(String::from("hi"));
+
+    S("rust is fun!".to_owned());
+    // 相当于String::from(它转移所有权哦)
+
+    S("nice weather".into());
+    // 相当于to_owned, 要求实现某个trait
+
+    S(format!("Interpolation {}", "Station"));
+
+    s(&String::from("abc")[0..1]);
+    s("  hello there ".trim());
+    S("Happy Monday!".to_string().replace("Mon", "Tues"));
+    S("Happy Monday!".replace("Mon", "Tues")); // 这里也被强转了
+
+    S("mY sHiFt KeY iS sTiCkY".to_lowercase()); // 这里调用to_...被强转了么?
 }

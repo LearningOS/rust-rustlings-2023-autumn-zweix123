@@ -7,11 +7,13 @@
 // Execute `rustlings hint errors3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 这里体现了?语法糖和函数返回值的对应
+// 即使是main也有返回值
+// 另外就是Resut的正确值不是值本身, 包括Option一样, 它要套Ok或者Som
 
 use std::num::ParseIntError;
 
-fn main() {
+fn main() -> Result<(), ParseIntError> {
     let mut tokens = 100;
     let pretend_user_input = "8";
 
@@ -23,6 +25,7 @@ fn main() {
         tokens -= cost;
         println!("You now have {} tokens.", tokens);
     }
+    Ok(())
 }
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {

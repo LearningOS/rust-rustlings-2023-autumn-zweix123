@@ -19,14 +19,17 @@
 // Execute `rustlings hint errors2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 这里体现出Result较于Option的区别了，
+// Option更强调值的有无
+// Resutl则强调结果和错误, 返回值使用Ok和Err, 强调是否正确
+// 还有语法糖自动抛出错误
 
 use std::num::ParseIntError;
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
-    let qty = item_quantity.parse::<i32>();
+    let qty = item_quantity.parse::<i32>()?;
 
     Ok(qty * cost_per_item + processing_fee)
 }

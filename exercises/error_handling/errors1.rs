@@ -9,14 +9,14 @@
 // Execute `rustlings hint errors1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 和Option类似的Rust还有Result，它不是C++的variant，目前看似乎还和Some有很多重叠的
 
-pub fn generate_nametag_text(name: String) -> Option<String> {
+pub fn generate_nametag_text(name: String) -> Result<String, String> {
     if name.is_empty() {
         // Empty names aren't allowed.
-        None
+        Err("`name` was empty; it must be nonempty.".into())
     } else {
-        Some(format!("Hi! My name is {}", name))
+        Ok(format!("Hi! My name is {}", name))
     }
 }
 
