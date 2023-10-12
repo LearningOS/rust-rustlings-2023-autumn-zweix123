@@ -7,25 +7,29 @@
 // Execute `rustlings hint as_ref_mut` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 再次理解`T:xxx`的语法, 它其实是一种对于泛型约束的语法糖(相对于C++)
+// 即支持某些trait的类型才可以
+
+// 这两个的意义是什么呢？// 即从泛型类型转换成其真的的类型，从而可以使用这个类型的方法
 
 // Obtain the number of bytes (not characters) in the given argument.
 // TODO: Add the AsRef trait appropriately as a trait bound.
-fn byte_counter<T>(arg: T) -> usize {
+fn byte_counter<T: AsRef<str>>(arg: T) -> usize {
     arg.as_ref().as_bytes().len()
 }
 
 // Obtain the number of characters (not bytes) in the given argument.
 // TODO: Add the AsRef trait appropriately as a trait bound.
-fn char_counter<T>(arg: T) -> usize {
+fn char_counter<T: AsRef<str>>(arg: T) -> usize {
     arg.as_ref().chars().count()
 }
 
 // Squares a number using as_mut().
 // TODO: Add the appropriate trait bound.
-fn num_sq<T>(arg: &mut T) {
+fn num_sq<T: AsMut<u32>>(arg: &mut T) {
     // TODO: Implement the function body.
-    ???
+    let v = arg.as_mut();
+    *v = (*v).pow(2)
 }
 
 #[cfg(test)]
